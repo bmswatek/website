@@ -6,9 +6,6 @@ import Navbar from "../components/navbar"; // Importing Navbar component
 export const metadata = {
   title: "bartek@portfolio:~$ _",
   description: "Access granted. Browse my coding experiments, Discord bots, and projects.",
-  icons: {
-    icon: '/favicon.png', // <-- This points to /public/favicon.ico
-  },
 };
 
 export default function RootLayout({ children }) {
