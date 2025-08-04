@@ -3,11 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function Projects() {
-  const projectLines = [
-    "> personal projects",
-    "{ DND Bot }",
-    "{ POGO Bot }"
+export default function DndBot() {
+  const aboutLines = [
+    "> chaoticcrafter",
+    "Developed a feature-rich Discord bot for Dungeons & Dragons gameplay automation using Node.js, JavaScript, and discord.js.", 
+    "Integrated the 5e Monster Manual API for dynamic encounter generation and implemented commands like /roll and /randomencounter for enhanced game flow.", 
+    "Leveraging async/await and JSON for configuration, the bot offers smooth execution and easy customization.", 
+    "It is deployed on a low-power device with automated updates and restarts, demonstrating expertise in backend logic,", 
+    "API integration, and efficient resource management.",
+    "{ github }"  // <-- Add GitHub as a typed line
   ];
 
   const [typedLines, setTypedLines] = useState([]);
@@ -16,8 +20,8 @@ export default function Projects() {
   const [doneTyping, setDoneTyping] = useState(false);
 
   useEffect(() => {
-    if (currentLineIndex < projectLines.length) {
-      const line = projectLines[currentLineIndex];
+    if (currentLineIndex < aboutLines.length) {
+      const line = aboutLines[currentLineIndex];
 
       if (currentCharIndex < line.length) {
         const timeout = setTimeout(() => {
@@ -40,29 +44,27 @@ export default function Projects() {
     }
   }, [currentCharIndex, currentLineIndex, typedLines]);
 
-  // Link mappings
-  const linkMap = {
-    "DND Bot": "/projects/dnd-bot",
-    "POGO Bot": "/projects/pogo-bot"
-  };
-
   return (
     <main className="min-h-screen px-6 pt-10 text-left font-mono text-[#00ffcc]">
-      <div className="mb-4 text-[#888]">~$ myprojects</div>
+      <div className="mb-4 text-[#888]">~$ dndbot</div>
 
       <pre className="pl-4 whitespace-pre-wrap">
         {typedLines.map((line, idx) => {
-          // Check if line contains { ... }
+          // Detect if line is { GitHub } and render as link
           const match = line.match(/\{(.+?)\}/);
           if (match) {
             const innerText = match[1].trim();
-            const linkHref = linkMap[innerText];
             return (
               <div key={idx}>
                 {"{ "}
-                <Link href={linkHref} className="underline hover:text-[#00ffaa]">
+                <a
+                  href="https://github.com/YourUsername/chaoticcrafter" // <-- Replace with your link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-[#00ffaa]"
+                >
                   {innerText}
-                </Link>
+                </a>
                 {" }"}
               </div>
             );
@@ -71,14 +73,10 @@ export default function Projects() {
           }
         })}
 
-        {doneTyping ? (
-          <div className="mt-2">
-            <span className="text-[#888]">~$</span>{" "}
-            <span className="animate-pulse">█</span>
-          </div>
-        ) : (
+        <div className="mt-2">
+          <span className="text-[#888]">~$</span>{" "}
           <span className="animate-pulse">█</span>
-        )}
+        </div>
       </pre>
     </main>
   );

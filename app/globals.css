@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+/* Optional: Only needed if not using next/font properly */
 
-body {
-    @apply font-sans bg-[#2C1D3A] text-gray-200; /* Dark pastel purple background */
-    font-family: 'Space Mono', monospace; /* Apply Space Mono */
-}
-
+/* 👇 Optional CSS variables if you want theme toggling later */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #2C1D3A;
+  --foreground: #cccccc;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,8 +17,15 @@ body {
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+
+@keyframes glitchPulse {
+  0%, 100% { opacity: 1; transform: translate(0, 0); }
+  20% { opacity: 0.9; transform: translate(-0.5px, 0.5px); }
+  40% { opacity: 1; transform: translate(0.5px, -0.5px); }
+  60% { opacity: 0.95; transform: translate(-0.3px, 0.3px); }
+  80% { opacity: 1; transform: translate(0, 0); }
+}
+
+.animate-glitch-pulse {
+  animation: glitchPulse 0.3s infinite;
 }

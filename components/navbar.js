@@ -1,17 +1,13 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="bg-grayPurple p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center text-darkPurple">
-        <Link href="/" className="text-2xl font-mono">
-          My Portfolio
-        </Link>
-        <div className="space-x-6 text-lg">
-          <Link href="/about" className="text-2 font-mono">About</Link>
-          <Link href="/projects" className="text-2 font-mono">Projects</Link>
-          <Link href="/contact" className="text-2 font-mono">Contact</Link>
-        </div>
+    <nav className="p-4">
+      <div className="flex justify-center space-x-6 text-[#00ffcc] text-lg">
+        <Link href="/" className="hover:text-green-400 transition">{'{ home }'}</Link>
+        <Link href="/about" className="hover:text-green-400 transition">{'{ about }'}</Link>
+        <Link href="/projects" className="hover:text-green-400 transition">{'{ projects }'}</Link>
+        <Link href="/contact" className="hover:text-green-400 transition">{'{ contact }'}</Link>
       </div>
     </nav>
   );
