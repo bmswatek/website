@@ -4,8 +4,8 @@ import Navbar from "../components/navbar"; // Importing Navbar component
 
 // Metadata for the website
 export const metadata = {
-  title: "My Portfolio",
-  description: "Welcome to the terminal. Explore my work.",
+  title: "bartek@portfolio:~$ _",
+  description: "Access granted. Browse my coding experiments, Discord bots, and projects.",
 };
 
 export default function RootLayout({ children }) {
