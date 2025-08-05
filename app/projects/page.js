@@ -3,11 +3,17 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function Projects() {
-  const projectLines = [
-    "> personal projects",
-    "{ DND Bot }",
-    "{ POGO Bot }"
+export default function DndBot() {
+  const aboutLines = [
+    "> farfetch'd",
+    "Event Tracking and Notification based Discord Bot.",
+    "The bot fetches real-time Pokémon GO event data from external APIs and",
+    "automatically updates users about active events and changes in game mechanics.",
+    "Designed commands to allow server administrators to configure channel",
+    "preferences for event announcements, enhancing flexibility and user control.",
+    "Implemented robust error-handling logic to ensure continuous functionality,",
+    "especially for API calls and data parsing.",
+    "{ github }"
   ];
 
   const [typedLines, setTypedLines] = useState([]);
@@ -16,8 +22,8 @@ export default function Projects() {
   const [doneTyping, setDoneTyping] = useState(false);
 
   useEffect(() => {
-    if (currentLineIndex < projectLines.length) {
-      const line = projectLines[currentLineIndex];
+    if (currentLineIndex < aboutLines.length) {
+      const line = aboutLines[currentLineIndex];
 
       if (currentCharIndex < line.length) {
         const timeout = setTimeout(() => {
@@ -40,29 +46,27 @@ export default function Projects() {
     }
   }, [currentCharIndex, currentLineIndex, typedLines]);
 
-  // Link mappings
-  const linkMap = {
-    "DND Bot": "/projects/dnd-bot",
-    "POGO Bot": "/projects/pogo-bot"
-  };
-
   return (
     <main className="min-h-screen px-6 pt-10 text-left font-mono text-[#00ffcc]">
-      <div className="mb-4 text-[#888]">~$ myprojects</div>
+      <div className="mb-4 text-[#888]">~$ pogobot</div>
 
       <pre className="pl-4 whitespace-pre-wrap">
         {typedLines.map((line, idx) => {
-          // Check if line contains { ... }
+          // Detect if line is { GitHub } and render as link
           const match = line.match(/\{(.+?)\}/);
           if (match) {
             const innerText = match[1].trim();
-            const linkHref = linkMap[innerText];
             return (
               <div key={idx}>
                 {"{ "}
-                <Link href={linkHref} className="underline hover:text-[#00ffaa]">
+                <a
+                  href="https://github.com/bmswatek/farfetch-d" // <-- Replace with your link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-[#00ffaa]"
+                >
                   {innerText}
-                </Link>
+                </a>
                 {" }"}
               </div>
             );
@@ -71,14 +75,10 @@ export default function Projects() {
           }
         })}
 
-        {doneTyping ? (
-          <div className="mt-2">
-            <span className="text-[#888]">~$</span>{" "}
-            <span className="animate-pulse">█</span>
-          </div>
-        ) : (
+        <div className="mt-2">
+          <span className="text-[#888]">~$</span>{" "}
           <span className="animate-pulse">█</span>
-        )}
+        </div>
       </pre>
     </main>
   );
