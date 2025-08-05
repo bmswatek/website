@@ -42,8 +42,8 @@ export default function Projects() {
 
   // Link mappings
   const linkMap = {
-    "DND Bot": "/projects/dnd-bot",
-    "POGO Bot": "/projects/pogo-bot"
+    "chaoticcrafter": "/projects/dnd-bot",
+    "farfetch'd": "/projects/pogo-bot"
   };
 
   return (
