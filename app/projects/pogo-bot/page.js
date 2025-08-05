@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function About() {
+export default function DndBot() {
   const aboutLines = [
     "> farfetch'd",
-    "Built a robust real-time Pokémon GO event-tracking Discord bot using Node.js, JavaScript, and JSON.",
-    "Hosted 24/7 on a Raspberry Pi, it integrates external APIs with async operations and comprehensive error handling.", 
-    "The bot supports server-specific settings via custom commands, delivering seamless, real-time event notifications",
-    "and interactions with users through discord.js.",
+    "Event Tracking and Notification based Discord Bot.",
+    "The bot fetches real-time Pokémon GO event data from external APIs and",
+    "automatically updates users about active events and changes in game mechanics.",
+    "Designed commands to allow server administrators to configure channel",
+    "preferences for event announcements, enhancing flexibility and user control.",
+    "Implemented robust error-handling logic to ensure continuous functionality,",
+    "especially for API calls and data parsing.",
     "{ github }"
   ];
 
@@ -57,7 +60,7 @@ export default function About() {
               <div key={idx}>
                 {"{ "}
                 <a
-                  href="https://github.com/YourUsername/chaoticcrafter" // <-- Replace with your link
+                  href="https://github.com/bmswatek/farfetch-d" // <-- Replace with your link
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-[#00ffaa]"
