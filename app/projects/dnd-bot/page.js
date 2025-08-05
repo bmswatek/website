@@ -58,7 +58,7 @@ export default function DndBot() {
               <div key={idx}>
                 {"{ "}
                 <a
-                  href="https://github.com/YourUsername/chaoticcrafter" // <-- Replace with your link
+                  href="https://github.com/bmswatek/chaoticcrafter" // <-- Replace with your link
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-[#00ffaa]"
