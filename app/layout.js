@@ -1,6 +1,6 @@
-import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar"; // Importing Navbar component
+import { Analytics } from "@vercel/analytics/next"
 
 // Metadata for the website
 export const metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 
         <Navbar />
         {children}
-
+        <Analytics />
         {/* Footer - terminal-style links */}
         <footer className="fixed bottom-1 w-full px-6 py-2 border-t border-[#222] text-sm text-[#00ffcc] text-center">
           <p className="mb-1">
