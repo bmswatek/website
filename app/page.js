@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const [ascii, setAscii] = useState("");
   const [asciiTyped, setAsciiTyped] = useState("");
   const [asciiCharIndex, setAsciiCharIndex] = useState(0);
-  const [asciiDone, setAsciiDone] = useState(false); // <-- Track when skull finishes
+  const [asciiDone, setAsciiDone] = useState(false);
 
   const [typedLines, setTypedLines] = useState([]);
   const fullLines = [
@@ -19,7 +22,6 @@ export default function Home() {
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [doneTyping, setDoneTyping] = useState(false);
 
-  // Load ASCII from txt and reset animation
   useEffect(() => {
     fetch("/ascii/skull.txt")
       .then((res) => res.text())
@@ -31,23 +33,21 @@ export default function Home() {
       });
   }, []);
 
-  // Animate skull typing
   useEffect(() => {
     if (!ascii) return;
     if (asciiCharIndex < ascii.length) {
       const timeout = setTimeout(() => {
         setAsciiTyped((prev) => prev + ascii[asciiCharIndex]);
         setAsciiCharIndex((prev) => prev + 1);
-      }, 18); // Skull typing speed
+      }, 18);
       return () => clearTimeout(timeout);
     } else {
-      setAsciiDone(true); // Skull finished typing
+      setAsciiDone(true);
     }
   }, [asciiCharIndex, ascii]);
 
-  // Animate terminal lines AFTER skull finishes
   useEffect(() => {
-    if (!asciiDone) return; // Wait for ASCII skull to finish first
+    if (!asciiDone) return;
 
     if (currentLineIndex < fullLines.length) {
       const line = fullLines[currentLineIndex];
@@ -74,20 +74,22 @@ export default function Home() {
   }, [asciiDone, currentCharIndex, currentLineIndex, typedLines]);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-start px-4 pt-6 bg-[#0a0a0a] text-[#00ffcc] text-sm leading-relaxed">
-      {/* ASCII Skull Fixed Height Container */}
+    <main className="min-h-screen flex flex-col items-center justify-start px-4 pt-6 bg-[#0a0a0a] text-[#00ffcc] text-sm leading-relaxed relative">
+      {/* ASCII Skull */}
       <div
         className="relative w-full flex justify-center items-center"
         style={{ height: "240px" }}
       >
         <pre
-          className={`absolute top-0 text-left whitespace-pre leading-none`} /* ${!asciiDone ? "animate-glitch-pulse" : ""} <- add to add glitch affect to skull */
+          className="absolute top-0 text-left whitespace-pre leading-none"
           style={{ width: "30ch" }}
         >
           {asciiTyped}
         </pre>
       </div>
-
+      <div style={{ display: "none" }}>
+        password = 1002200120232024 
+      </div>
       {/* Terminal Typing Lines */}
       {asciiDone && (
         <pre className="text-left whitespace-pre leading-snug pl-4">
@@ -103,6 +105,15 @@ export default function Home() {
           )}
         </pre>
       )}
+
+      {/* Discrete "?" Link above bottom navbar */}
+      <div
+        onClick={() => router.push("/locked")}
+        className="fixed bottom-16 right-2 text-[#00ffcc] cursor-pointer select-none z-50"
+        title="Go to locked page"
+      >
+        ?
+      </div>
     </main>
   );
 }
