@@ -105,15 +105,6 @@ export default function Home() {
           )}
         </pre>
       )}
-
-      {/* Discrete "?" Link above bottom navbar */}
-      <div
-        onClick={() => router.push("/locked")}
-        className="fixed bottom-16 right-2 text-[#00ffcc] cursor-pointer select-none z-50"
-        title="Go to locked page"
-      >
-        ?
-      </div>
     </main>
   );
 }
